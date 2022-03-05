@@ -6,7 +6,7 @@ export default class Posts extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.string("title").notNullable;
+      table.string("title").notNullable();
       table.text("content", "longtext").nullable();
       table.boolean("online").notNullable().defaultTo(false);
       table.string("thumbnail").nullable();
