@@ -22,11 +22,16 @@
         })
     </div>
 
-    @!component('components/input', {
-        label: 'Demo',
-        name: 'demo',
-        value: 'demo'
-    })
+    <div class="mb-3">
+        <input {{ post.online ? 'checked' : '' }} 
+            type="checkbox" 
+            name="online" 
+            class="form-check-input" 
+            id="online" />
+        <label 
+            for="online" 
+            class="form-check-label">En ligne ?</label>
+    </div>
 
     <button class="btn btn-primary">Sauvegarder</button>
 </form>

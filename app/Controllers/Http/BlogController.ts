@@ -15,7 +15,8 @@ export default class BlogController {
 
   async update(ctx: HttpContextContract) {
     const post = await Post.findOrFail(ctx.params.id);
-    post.merge(await ctx.request.validate(UpdatePostValidator)).save();
+    const data = await ctx.request.validate(UpdatePostValidator);
+    post.merge({ ...data, online: data.online || false }).save();
     ctx.session.flash({ success: "L'article a bien été sauvegardé" });
     return ctx.response.redirect().toRoute("home");
   }

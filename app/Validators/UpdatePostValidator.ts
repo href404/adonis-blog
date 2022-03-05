@@ -26,6 +26,7 @@ export default class UpdatePostValidator {
   public schema = schema.create({
     title: schema.string({ trim: true }, [rules.minLength(5)]),
     content: schema.string({ trim: true }),
+    online: schema.boolean.nullableAndOptional(),
   });
 
   /**
