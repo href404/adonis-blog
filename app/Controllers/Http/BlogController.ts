@@ -13,6 +13,7 @@ export default class BlogController {
 
   async detail(ctx: HttpContextContract) {
     const post = await Post.findOrFail(ctx.params.id);
+    await ctx.bouncer.authorize("editPost", post);
     const categories = await Category.all();
     return ctx.view.render("blog/detail", { post, categories });
   }
@@ -46,6 +47,8 @@ export default class BlogController {
     const post = ctx.params.id
       ? await Post.findOrFail(ctx.params.id)
       : new Post();
+
+    if (post.id) await ctx.bouncer.authorize("editPost", post);
     const data = await ctx.request.validate(UpdatePostValidator);
     post.merge({ ...data, online: data.online || false }).save();
   }
