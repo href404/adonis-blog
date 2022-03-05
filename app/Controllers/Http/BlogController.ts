@@ -30,6 +30,13 @@ export default class BlogController {
     return ctx.response.redirect().toRoute("home");
   }
 
+  async delete(ctx: HttpContextContract) {
+    const post = await Post.findOrFail(ctx.params.id);
+    await post.delete();
+    ctx.session.flash({ success: "L'article a bien été supprimé" });
+    return ctx.response.redirect().toRoute("home");
+  }
+
   private async handle(ctx: HttpContextContract) {
     const post = ctx.params.id
       ? await Post.findOrFail(ctx.params.id)

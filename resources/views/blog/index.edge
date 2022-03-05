@@ -16,6 +16,9 @@
             <li class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
                     <a href="{{ route('detail', { id: post.id }) }}">{{ post.title }}</a>
+                    <form action="{{ route('detail', { id: post.id }) }}?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
                 </div>
             </li>
         @endeach

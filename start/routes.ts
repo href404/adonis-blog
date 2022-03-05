@@ -27,3 +27,5 @@ Route.post("/article/new", "BlogController.save");
 
 Route.get("/article/:id", "BlogController.detail").as("detail");
 Route.post("/article/:id", "BlogController.update");
+
+Route.delete("/article/:id", "BlogController.delete");
