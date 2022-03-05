@@ -21,3 +21,5 @@
 import Route from "@ioc:Adonis/Core/Route";
 
 Route.get("/", "BlogController.index").as("home");
+Route.get("/post/:id", "BlogController.detail").as("detail");
+Route.post("/post/:id", "BlogController.update");
