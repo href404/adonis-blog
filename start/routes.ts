@@ -34,3 +34,6 @@ Route.get("/", "BlogController.index").as("home");
 
 Route.get("/login", "SecurityController.index").as("login");
 Route.post("/login", "SecurityController.save");
+
+Route.get("/contact", "ContactController.index").as("contact");
+Route.post("/contact", "ContactController.save");
