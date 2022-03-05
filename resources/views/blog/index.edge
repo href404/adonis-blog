@@ -25,4 +25,14 @@
     </ul>
 </main>
 
+<nav>
+    <ul class="pagination">
+        @each(anchor in posts.getUrlsForRange(1, posts.lastPage))
+            <li class="page-item">
+                <a href="{{ anchor.url }}" class="page-link">{{ anchor.page }}</a>
+            </li>
+        @endeach
+    </ul>
+</nav>
+
 @endsection
