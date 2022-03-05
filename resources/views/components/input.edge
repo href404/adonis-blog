@@ -18,7 +18,7 @@
             id="{{ name }}">{{ flashMessages.get(name) || value || '' }}</textarea>
     @else
         <input 
-            type="{{ type }}" 
+            type="{{ type || 'text' }}" 
             class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
             name="{{ name }}" 
             id="{{ name }}" 

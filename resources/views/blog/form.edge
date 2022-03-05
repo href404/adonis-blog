@@ -20,6 +20,27 @@
             </div>
         </div>
     </div>
+
+    <div class="mb-3">
+        <div class="d-flex">
+            @if (post.thumbnail)
+                <div class="me-3">
+                    <img 
+                        src="/uploads/{{ post.thumbnail }}" 
+                        width="100" 
+                        height="100" 
+                        style="object-fit: cover" 
+                        alt="Image de l'article" 
+                        class="img-thumbnail">
+                </div>
+            @endif
+            @!component('components/input', {
+                label: 'Miniature',
+                name: 'thumbnailFile',
+                type: 'file'
+            })
+        </div>
+    </div>
     
     <div class="mb-3">
         @!component('components/input', {

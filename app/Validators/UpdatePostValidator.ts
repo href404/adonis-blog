@@ -32,9 +32,7 @@ export default class UpdatePostValidator {
     categoryId: schema.number([
       rules.exists({ column: Category.primaryKey, table: Category.table }),
     ]),
-    userId: schema.number([
-      rules.exists({ column: User.primaryKey, table: User.table }),
-    ]),
+    thumbnailFile: schema.file({ size: "2mb", extnames: ["jpg"] }),
   });
 
   /**
