@@ -1,5 +1,6 @@
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Category from "App/Models/Category";
 
 export default class UpdatePostValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -27,6 +28,9 @@ export default class UpdatePostValidator {
     title: schema.string({ trim: true }, [rules.minLength(5)]),
     content: schema.string({ trim: true }),
     online: schema.boolean.nullableAndOptional(),
+    categoryId: schema.number([
+      rules.exists({ column: Category.primaryKey, table: Category.table }),
+    ]),
   });
 
   /**

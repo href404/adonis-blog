@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Database from "@ioc:Adonis/Lucid/Database";
+import Category from "App/Models/Category";
 import Post from "App/Models/Post";
 import UpdatePostValidator from "App/Validators/UpdatePostValidator";
 
@@ -12,12 +13,14 @@ export default class BlogController {
 
   async detail(ctx: HttpContextContract) {
     const post = await Post.findOrFail(ctx.params.id);
-    return ctx.view.render("blog/detail", { post });
+    const categories = await Category.all();
+    return ctx.view.render("blog/detail", { post, categories });
   }
 
   async create({ view }: HttpContextContract) {
     const post = new Post();
-    return view.render("blog/create", { post });
+    const categories = await Category.all();
+    return view.render("blog/create", { post, categories });
   }
 
   async save(ctx: HttpContextContract) {
