@@ -1,8 +1,22 @@
 <div>
     <label for="{{ name }}">{{ label }}</label>
     @if (type === 'textarea')
-        <textarea class="form-control" name="{{ name }}" id="{{ name }}">{{ value }}</textarea>
+        <textarea 
+            class="form-control" 
+            name="{{ name }}" 
+            id="{{ name }}">{{ flashMessages.get(name) || value || '' }}</textarea>
     @else
-        <input type="text" class="form-control" name="{{ name }}" id="{{ name }}" value="{{ value }}">
+        <input 
+            type="text" 
+            class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
+            name="{{ name }}" 
+            id="{{ name }}" 
+            value="{{ flashMessages.get(name) || value || '' }}">
+    @endif
+
+    @if (flashMessages.has(`errors.${name}`))
+        <div class="invalid-feedback">
+            {{ flashMessages.get(`errors.${name}`) }}
+        </div>
     @endif
 </div>

@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Post from "App/Models/Post";
+import UpdatePostValidator from "App/Validators/UpdatePostValidator";
 
 export default class BlogController {
   async index({ view }: HttpContextContract) {
@@ -14,7 +15,7 @@ export default class BlogController {
 
   async update(ctx: HttpContextContract) {
     const post = await Post.findOrFail(ctx.params.id);
-    post.merge(ctx.request.all()).save();
+    post.merge(await ctx.request.validate(UpdatePostValidator)).save();
     ctx.session.flash({ success: "L'article a bien été sauvegardé" });
     return ctx.response.redirect().toRoute("home");
   }
