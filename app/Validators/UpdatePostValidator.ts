@@ -1,7 +1,6 @@
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Category from "App/Models/Category";
-import User from "App/Models/User";
 
 export default class UpdatePostValidator {
   constructor(protected ctx: HttpContextContract) {}
